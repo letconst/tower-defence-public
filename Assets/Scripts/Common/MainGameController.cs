@@ -6,4 +6,15 @@ public class MainGameController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+    private void Update()
+    {
+        if (GameManager.Instance && GameManager.Instance.GameState == GameState.Result)
+        {
+            if (!SystemSceneManager.IsLoading && Input.GetMouseButtonDown(0))
+            {
+                SystemSceneManager.LoadNextScene("Title", SceneTransition.Fade);
+            }
+        }
+    }
 }

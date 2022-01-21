@@ -7,6 +7,9 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     [SerializeField, Header("ゲームオーバーとする住宅破壊数の割合"), Range(1, 100)]
     private int gameOverLimit;
 
+    [SerializeField]
+    private GameObject gameOverText;
+
     [HideInInspector]
     public int maxChunks;
 
@@ -31,8 +34,12 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
     {
         if (totalDestroyed >= _destroyedChunksLimit)
         {
-            // TODO
-            Debug.Log("game over");
+            gameOverText.SetActive(true);
+
+            if (GameManager.Instance)
+            {
+                GameManager.Instance.GameState = GameState.Result;
+            }
         }
     }
 }

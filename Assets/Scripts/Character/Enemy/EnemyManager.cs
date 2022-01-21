@@ -47,7 +47,6 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
     /// <param name="enemy">削除する敵</param>
     public void RemoveEnemy(EnemyBase enemy)
     {
-        Debug.Log(enemy);
         if (!enemy) return;
 
         _enemies.Remove(enemy);

@@ -1,9 +1,14 @@
+﻿using System;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour, IDamageable
 {
     [SerializeField, Header("初期体力値（最大）")]
     protected int defaultHealth;
+
+    protected EnemyState _selfState;
 
     public int CurrentHealth { get; protected set; }
 
@@ -13,6 +18,13 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     public abstract void OnDamage(int amount);
 
     private IDisposable _disposable;
+
+    public enum EnemyState
+    {
+        Idling,
+        Moving,
+        Attacking
+    }
 
     protected virtual void Awake()
     {
